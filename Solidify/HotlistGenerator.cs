@@ -21,7 +21,7 @@ namespace Solidify
                 Console.WriteLine("Running hotlist generator in " + ConfigurationManager.AppSettings["SYSNAM"]);
                 
 		        //Generate the hot lists
-                GenerateHotLists(DateTime.Now);
+                GenerateHotLists(new DateTime(2011, 8, 15));  //Time is frozen... In a live system this would be DateTime.Now
 		        
                 Console.WriteLine("Finished running hotlist generator in " + ConfigurationManager.AppSettings["SYSNAM"]);
                 Console.WriteLine();
@@ -141,7 +141,7 @@ namespace Solidify
                                                            where decimal.Parse(product.Attribute("QuantityForSale").Value) < 1
                                                                     && !(decimal.Parse(product.Attribute("QuantityForSale1").Value) > 0m
                                                                             //due in within 7 days
-                                                                            && DateTime.Parse(product.Attribute("AvailableDate1").Value) <= DateTime.Now.AddDays(7)) 
+                                                                            && DateTime.Parse(product.Attribute("AvailableDate1").Value) <= dateToGenerateFor.AddDays(7)) 
                                                            select product.Attribute("MATNR").Value).ToArray();
 
             //remove cancelled sales lines
