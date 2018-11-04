@@ -16,7 +16,7 @@ namespace Solidify.Services
         public static XmlDocument GetProducts(string environment)
         {
             return _products;
-            //works more!
+            //works morer!
         }
     }
 }
